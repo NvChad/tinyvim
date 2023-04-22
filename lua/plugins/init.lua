@@ -5,6 +5,11 @@ local plugins = {
   {
     "navarasu/onedark.nvim",
     priority = 1000,
+    config = function()
+      require("onedark").setup {
+        style = "darker",
+      }
+    end,
   },
 
   -- file tree
@@ -27,13 +32,14 @@ local plugins = {
   -- syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require "plugins.configs.treesitter"
     end,
   },
 
-  -- bufferline
+  -- buffer + tab line
   {
     "akinsho/bufferline.nvim",
     lazy = false,
@@ -105,6 +111,7 @@ local plugins = {
     end,
   },
 
+  -- lsp
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -122,6 +129,7 @@ local plugins = {
     },
   },
 
+  -- indent lines
   {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPre", "BufNewFile" },
@@ -130,6 +138,7 @@ local plugins = {
     end,
   },
 
+  -- files finder etc
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
@@ -138,6 +147,7 @@ local plugins = {
     end,
   },
 
+  -- git status on signcolumn etc
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
@@ -146,6 +156,7 @@ local plugins = {
     end,
   },
 
+  -- comment plugin
   {
     "numToStr/Comment.nvim",
     config = function()

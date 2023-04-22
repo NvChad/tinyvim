@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require "plugins"
 
-vim.highlight.priorities.semantic_tokens = 95
+vim.highlight.priorities.semantic_tokens = 95 -- disable semantic tokens highlights!
 
 require("onedark").load()
 
