@@ -145,6 +145,13 @@ local plugins = {
       require("gitsigns").setup()
     end,
   },
+
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  },
 }
 
 require("lazy").setup(plugins, require "plugins.configs.lazy")

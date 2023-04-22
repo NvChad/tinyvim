@@ -1,6 +1,6 @@
 return {
   defaults = { lazy = true },
-  install = { colorscheme = { "nightfox" } },
+  install = { colorscheme = { "onedark" } },
   performance = {
     rtp = {
       disabled_plugins = {
