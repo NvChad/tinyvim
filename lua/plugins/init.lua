@@ -54,7 +54,7 @@ local plugins = {
     "echasnovski/mini.statusline",
     lazy = false,
     config = function()
-      require("mini.statusline").setup()
+      require("mini.statusline").setup { set_vim_settings = false }
     end,
   },
 
@@ -105,7 +105,7 @@ local plugins = {
   {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
-    cmd = "Mason",
+    cmd = { "Mason", "MasonInstall" },
     config = function()
       require("mason").setup()
     end,
