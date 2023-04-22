@@ -3,11 +3,8 @@ local plugins = {
 
   -- colorscheme
   {
-    "folke/tokyonight.nvim",
+    "navarasu/onedark.nvim",
     priority = 1000,
-    config = function()
-      require("tokyonight").setup()
-    end,
   },
 
   -- file tree
@@ -22,7 +19,6 @@ local plugins = {
   -- icons, for UI related plugins
   {
     "nvim-tree/nvim-web-devicons",
-    event = "VeryLazy",
     config = function()
       require("nvim-web-devicons").setup()
     end,
@@ -31,9 +27,9 @@ local plugins = {
   -- syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require("plugins.configs.treesitter")
+      require "plugins.configs.treesitter"
     end,
   },
 
@@ -42,17 +38,17 @@ local plugins = {
     "akinsho/bufferline.nvim",
     lazy = false,
     config = function()
-      require("bufferline").setup({})
+      require "plugins.configs.bufferline"
     end,
   },
 
   -- statusline
 
   {
-    "nvim-lualine/lualine.nvim",
+    "echasnovski/mini.statusline",
     lazy = false,
     config = function()
-      require("lualine").setup()
+      require("mini.statusline").setup()
     end,
   },
 
@@ -89,14 +85,14 @@ local plugins = {
           require("nvim-autopairs").setup()
 
           --  cmp integration
-          local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-          local cmp = require("cmp")
+          local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+          local cmp = require "cmp"
           cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
       },
     },
     config = function()
-      require("plugins.configs.cmp")
+      require "plugins.configs.cmp"
     end,
   },
 
@@ -105,7 +101,7 @@ local plugins = {
     build = ":MasonUpdate",
     cmd = "Mason",
     config = function()
-      require("plugins.configs.mason")
+      require("mason").setup()
     end,
   },
 
@@ -113,14 +109,14 @@ local plugins = {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require("plugins.configs.lspconfig")
+      require "plugins.configs.lspconfig"
     end,
     dependencies = {
       -- formatting , linting
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
-          require("plugins.configs.null")
+          require "plugins.configs.null"
         end,
       },
     },
@@ -128,7 +124,7 @@ local plugins = {
 
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("indent_blankline").setup()
     end,
@@ -138,7 +134,7 @@ local plugins = {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     config = function()
-      require("telescope").setup()
+      require "plugins.configs.telescope"
     end,
   },
 
@@ -151,10 +147,4 @@ local plugins = {
   },
 }
 
-local lazynvim_options = {
-  defaults = {
-    lazy = true,
-  },
-}
-
-require("lazy").setup(plugins, lazynvim_options)
+require("lazy").setup(plugins, require "plugins.configs.lazy")

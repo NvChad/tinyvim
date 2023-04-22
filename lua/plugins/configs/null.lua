@@ -1,9 +1,9 @@
-local null_ls = require("null-ls")
+local null_ls = require "null-ls"
+local format = null_ls.builtins.formatting
 
-
--- these are just the basics , check their docs
-null_ls.setup({
-    sources = {
-        null_ls.builtins.formatting.stylua,
-    },
-})
+null_ls.setup {
+  sources = {
+    format.stylua, -- for lua
+    format.prettier, -- for web dev
+  },
+}

@@ -19,8 +19,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require "plugins"
 
--- loads colorshcme
-vim.cmd [[colorscheme tokyonight]]
+vim.highlight.priorities.semantic_tokens = 95
+
+require("onedark").load()
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
