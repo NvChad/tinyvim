@@ -20,4 +20,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require "plugins"
 
-require("onedark").load()
+vim.cmd "colorscheme nightfox"

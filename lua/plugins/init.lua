@@ -1,13 +1,14 @@
 local plugins = {
-  "nvim-lua/plenary.nvim",
+  { lazy = true, "nvim-lua/plenary.nvim" },
 
-  -- colorscheme
   {
-    "navarasu/onedark.nvim",
+    "EdenEast/nightfox.nvim",
     priority = 1000,
     config = function()
-      require("onedark").setup {
-        style = "darker",
+      require("nightfox").setup {
+        groups = {
+          all = { VertSplit = { fg = "bg3" } },
+        },
       }
     end,
   },
@@ -42,7 +43,6 @@ local plugins = {
   -- buffer + tab line
   {
     "akinsho/bufferline.nvim",
-    lazy = false,
     config = function()
       require "plugins.configs.bufferline"
     end,
@@ -52,7 +52,6 @@ local plugins = {
 
   {
     "echasnovski/mini.statusline",
-    lazy = false,
     config = function()
       require("mini.statusline").setup { set_vim_settings = false }
     end,
@@ -159,6 +158,7 @@ local plugins = {
   -- comment plugin
   {
     "numToStr/Comment.nvim",
+    lazy = true,
     config = function()
       require("Comment").setup()
     end,
