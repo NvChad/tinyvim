@@ -117,15 +117,15 @@ local plugins = {
     config = function()
       require "plugins.configs.lspconfig"
     end,
-    dependencies = {
-      -- formatting , linting
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-          require "plugins.configs.null"
-        end,
-      },
-    },
+  },
+
+  -- formatting , linting
+  {
+    "stevearc/conform.nvim",
+    lazy = true,
+    config = function()
+      require "plugins.configs.conform"
+    end,
   },
 
   -- indent lines

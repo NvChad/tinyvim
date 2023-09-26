@@ -26,3 +26,8 @@ map("n", "<leader>/", function()
 end)
 
 map("v", "<leader>/", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
+
+-- format
+map("n", "<leader>fm", function()
+  require("conform").format()
+end)
