@@ -1,8 +1,8 @@
-# basic-config
-- This config is meant to be a starting point for new neovim users
+# TinyVim
+- Minimal Neovim config meant to be a starting point for new neovim users.
 
-# Notes
-- Dont expect this config to be beautiful! 
+# About
+- Dont expect this config to be beautiful or blazing fast (no hardcore lazyloading is done)! 
 - I'm just using some plugins with their default configs
 - This config only uses only lesser plugins which I think are important for any config.
 
