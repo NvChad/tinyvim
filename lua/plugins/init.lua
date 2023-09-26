@@ -34,7 +34,6 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require "plugins.configs.treesitter"
     end,
