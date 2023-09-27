@@ -42,6 +42,7 @@ local plugins = {
   -- buffer + tab line
   {
     "akinsho/bufferline.nvim",
+    event = "BufReadPre",
     config = function()
       require "plugins.configs.bufferline"
     end,
