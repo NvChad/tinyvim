@@ -11,7 +11,7 @@ git clone https://github.com/NvChad/tinyvim ~/.config/nvim && nvim
 
 - Windows
 ```bash
-git clone https://github.com/NvChad/NvChad $HOME\AppData\Local\nvim --depth 1 && nvim
+git clone https://github.com/NvChad/tinyvim $HOME\AppData\Local\nvim --depth 1 && nvim
 ```
 
 # About
