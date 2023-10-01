@@ -14,6 +14,20 @@ git clone https://github.com/NvChad/tinyvim ~/.config/nvim && nvim
 git clone https://github.com/NvChad/tinyvim $HOME\AppData\Local\nvim --depth 1 && nvim
 ```
 
+# Dir structure
+```bash
+├── init.lua
+├── lua
+    ├── commands.lua
+    ├── mappings.lua
+    ├── options.lua
+    └── plugins
+        ├── init.lua
+        ├── configs
+            ├── cmp.lua
+            ├── telescope.lua
+            └── ( more ... )
+```
 # About
 - Dont expect this config to be beautiful or blazing fast (no hardcore lazyloading is done)! 
 - I'm just using some plugins with their default configs
