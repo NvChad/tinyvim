@@ -21,11 +21,8 @@ map("n", "<S-Tab>", "<cmd> BufferLineCyclePrev <CR>")
 map("n", "<C-q>", "<cmd> bd <CR>")
 
 -- comment.nvim
-map("n", "<leader>/", function()
-  require("Comment.api").toggle.linewise.current()
-end)
-
-map("v", "<leader>/", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
+map("n", "<leader>/", "gcc", { remap = true })
+map("v", "<leader>/", "gc", { remap = true })
 
 -- format
 map("n", "<leader>fm", function()

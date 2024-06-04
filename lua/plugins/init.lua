@@ -4,13 +4,7 @@ local plugins = {
   {
     "EdenEast/nightfox.nvim",
     priority = 1000,
-    config = function()
-      require("nightfox").setup {
-        groups = {
-          all = { VertSplit = { fg = "bg3" } },
-        },
-      }
-    end,
+    config = true,
   },
 
   -- file tree
@@ -133,7 +127,10 @@ local plugins = {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require("ibl").setup()
+      require("ibl").setup {
+        indent = { char = "│" },
+        scope = { char = "│", highlight = "Comment" },
+      }
     end,
   },
 
@@ -154,15 +151,6 @@ local plugins = {
       require("gitsigns").setup()
     end,
   },
-
-  -- comment plugin
-  {
-    "numToStr/Comment.nvim",
-    lazy = true,
-    config = function()
-      require("Comment").setup()
-    end,
-  },
 }
 
-require("lazy").setup(plugins, require "plugins.configs.lazy")
+require("lazy").setup(plugins, require "lazy_config")

@@ -1,37 +1,33 @@
-local opt = vim.opt
+local o = vim.o
 
 vim.g.mapleader = " "
 
-opt.laststatus = 3 -- global statusline
-opt.showmode = false
+o.laststatus = 3 -- global statusline
+o.showmode = false
 
-opt.clipboard = "unnamedplus"
+o.clipboard = "unnamedplus"
 
 -- Indenting
-opt.expandtab = true
-opt.shiftwidth = 2
-opt.smartindent = true
-opt.tabstop = 2
-opt.softtabstop = 2
+o.expandtab = true
+o.shiftwidth = 2
+o.smartindent = true
+o.tabstop = 2
+o.softtabstop = 2
 
-opt.fillchars = { eob = " " }
-opt.ignorecase = true
-opt.smartcase = true
-opt.mouse = "a"
+vim.opt.fillchars = { eob = " " }
+o.ignorecase = true
+o.smartcase = true
+o.mouse = "a"
 
 -- Numbers
-opt.number = true
-opt.ruler = false
+o.number = true
 
-opt.signcolumn = "yes"
-opt.splitbelow = true
-opt.splitright = true
-opt.termguicolors = true
-opt.timeoutlen = 400
-opt.undofile = true
-
-opt.timeoutlen = 400
-opt.updatetime = 250
+o.signcolumn = "yes"
+o.splitbelow = true
+o.splitright = true
+o.termguicolors = true
+o.timeoutlen = 400
+o.undofile = true
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
