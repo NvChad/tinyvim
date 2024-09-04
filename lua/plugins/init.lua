@@ -43,7 +43,6 @@ local plugins = {
   },
 
   -- statusline
-
   {
     "echasnovski/mini.statusline",
     config = function()
