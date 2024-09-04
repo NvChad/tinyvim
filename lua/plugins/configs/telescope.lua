@@ -1,4 +1,4 @@
-require("telescope").setup {
+return {
   defaults = {
     sorting_strategy = "ascending",
     layout_config = {

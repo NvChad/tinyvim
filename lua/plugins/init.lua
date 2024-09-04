@@ -1,4 +1,4 @@
-local plugins = {
+return {
   { lazy = true, "nvim-lua/plenary.nvim" },
 
   {
@@ -7,24 +7,17 @@ local plugins = {
     config = true,
   },
 
-  -- file tree
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    config = function()
-      require("nvim-tree").setup()
-    end,
+    opts = {},
   },
 
-  -- icons, for UI related plugins
   {
     "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("nvim-web-devicons").setup()
-    end,
+    opts = {},
   },
 
-  -- syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -33,16 +26,12 @@ local plugins = {
     end,
   },
 
-  -- buffer + tab line
   {
     "akinsho/bufferline.nvim",
     event = "BufReadPre",
-    config = function()
-      require "plugins.configs.bufferline"
-    end,
+    opts = require "plugins.configs.bufferline",
   },
 
-  -- statusline
   {
     "echasnovski/mini.statusline",
     config = function()
@@ -64,7 +53,6 @@ local plugins = {
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lua",
 
-      -- snippets
       --list of default snippets
       "rafamadriz/friendly-snippets",
 
@@ -82,15 +70,16 @@ local plugins = {
         config = function()
           require("nvim-autopairs").setup()
 
-          --  cmp integration
           local cmp_autopairs = require "nvim-autopairs.completion.cmp"
           local cmp = require "cmp"
           cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
       },
     },
-    config = function()
-      require "plugins.configs.cmp"
+    -- made opts a function cuz cmp config calls cmp module
+    -- and we lazyloaded cmp so we dont want that file to be read on startup!
+    opts = function()
+      return require "plugins.configs.cmp"
     end,
   },
 
@@ -98,12 +87,9 @@ local plugins = {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
     cmd = { "Mason", "MasonInstall" },
-    config = function()
-      require("mason").setup()
-    end,
+    opts = {},
   },
 
-  -- lsp
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -112,16 +98,12 @@ local plugins = {
     end,
   },
 
-  -- formatting , linting
   {
     "stevearc/conform.nvim",
     lazy = true,
-    config = function()
-      require "plugins.configs.conform"
-    end,
+    opts = require "plugins.configs.conform",
   },
 
-  -- indent lines
   {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPre", "BufNewFile" },
@@ -137,19 +119,12 @@ local plugins = {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    config = function()
-      require "plugins.configs.telescope"
-    end,
+    opts = require "plugins.configs.telescope",
   },
 
-  -- git status on signcolumn etc
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("gitsigns").setup()
-    end,
+    opts = {},
   },
 }
-
-require("lazy").setup(plugins, require "lazy_config")
