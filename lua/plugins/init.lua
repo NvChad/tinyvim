@@ -1,20 +1,15 @@
 return {
   { lazy = true, "nvim-lua/plenary.nvim" },
 
-  {
-    "EdenEast/nightfox.nvim",
-    priority = 1000,
-    config = true,
-  },
+  { "nvim-tree/nvim-web-devicons", opts = {} },
+  { "echasnovski/mini.statusline", opts = {} },
+  { "lewis6991/gitsigns.nvim", opts = {} },
+
+  "EdenEast/nightfox.nvim",
 
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = {},
-  },
-
-  {
-    "nvim-tree/nvim-web-devicons",
     opts = {},
   },
 
@@ -28,32 +23,16 @@ return {
 
   {
     "akinsho/bufferline.nvim",
-    event = "BufReadPre",
     opts = require "plugins.configs.bufferline",
   },
 
+  -- we use blink plugin only when in insert mode
+  -- so lets lazyload it at InsertEnter event
   {
-    "echasnovski/mini.statusline",
-    config = function()
-      require("mini.statusline").setup { set_vim_settings = false }
-    end,
-  },
-
-  -- we use cmp plugin only when in insert mode
-  -- so lets lazyload it at InsertEnter event, to know all the events check h-events
-  -- completion , now all of these plugins are dependent on cmp, we load them after cmp
-  {
-    "hrsh7th/nvim-cmp",
+    "saghen/blink.cmp",
+    version = "1.*",
     event = "InsertEnter",
     dependencies = {
-      -- cmp sources
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lsp",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lua",
-
-      --list of default snippets
       "rafamadriz/friendly-snippets",
 
       -- snippets engine
@@ -65,21 +44,12 @@ return {
       },
 
       -- autopairs , autocompletes ()[] etc
-      {
-        "windwp/nvim-autopairs",
-        config = function()
-          require("nvim-autopairs").setup()
-
-          local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-          local cmp = require "cmp"
-          cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-        end,
-      },
+      { "windwp/nvim-autopairs", opts = {} },
     },
     -- made opts a function cuz cmp config calls cmp module
     -- and we lazyloaded cmp so we dont want that file to be read on startup!
     opts = function()
-      return require "plugins.configs.cmp"
+      return require "plugins.configs.blink"
     end,
   },
 
@@ -92,7 +62,6 @@ return {
 
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require "plugins.configs.lspconfig"
     end,
@@ -100,19 +69,13 @@ return {
 
   {
     "stevearc/conform.nvim",
-    lazy = true,
     opts = require "plugins.configs.conform",
   },
 
   {
-    "lukas-reineke/indent-blankline.nvim",
+    "nvimdev/indentmini.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("ibl").setup {
-        indent = { char = "│" },
-        scope = { char = "│", highlight = "Comment" },
-      }
-    end,
+    opts = {},
   },
 
   -- files finder etc
@@ -122,9 +85,4 @@ return {
     opts = require "plugins.configs.telescope",
   },
 
-  {
-    "lewis6991/gitsigns.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {},
-  },
 }
