@@ -37,23 +37,8 @@ capabilities.textDocument.completion.completionItem = {
     },
   },
 }
--- Setup language servers.
-local lspconfig = require "lspconfig"
 
-lspconfig.lua_ls.setup {
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      diagnostics = { globals = { "vim" } },
-    },
-  },
-}
+vim.lsp.config("*", { capabilities = capabilities })
+local servers = { "html", "cssls" , 'lua_ls' }
 
--- setup multiple servers with same default options
-local servers = { "ts_ls", "html", "cssls" }
-
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    capabilities = capabilities,
-  }
-end
+vim.lsp.enable(servers)
