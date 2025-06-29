@@ -33,7 +33,7 @@ rm -rf ~/.local/share/nvim && rm -rf ~/.config/nvim/lazy-lock.json
     └── plugins
         ├── init.lua
         ├── configs
-            ├── cmp.lua
+            ├── blink.lua
             ├── telescope.lua
             └── ( more ... )
 ```
@@ -52,7 +52,7 @@ Below is the list of some very important plugins which I think should be must fo
 | Nvim-web-devicons       | Icons provider                               |
 | nvim-treesitter         | Configure treesitter                         |
 | bufferline.nvim         | Tab + bufferline plugin                      |
-| nvim-cmp                | Autocompletion                               |
+| blink.cmp               | Autocompletion                               |
 | Luasnip & friendly snippets               | Snippets                                      |
 | mason.nvim              | Download binaries of various lsps, formatters, debuggers, etc. |
 | gitsigns.nvim                | Git-related features                         |
